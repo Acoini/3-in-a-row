@@ -1,5 +1,5 @@
 name: Deploy Staging
-run-name: ${{ github.actor }} is pushing a commit
+run-name: ${{ github.actor }} is pushing a changes
 on: [push]
 jobs:
   build:
