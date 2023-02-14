@@ -1,26 +1,26 @@
 pipeline {
     agent {
-        docker { image 'openjdk:17.0.2-jdk-bullseye' }
+        docker { image 'node:lts-alpine3.17' }
     }
     stages {
         stage("Show Working Branch") {
             steps {
-                echo 'Building...' + env.BRANCH_NAME
+                echo 'Working on ' + env.BRANCH_NAME
             }
         }
         stage("Unit Test stage") {
             steps {
-                sh "./mvnw test -Dsnyk.skip"
+                sh "npm ci"
             }
         }
         stage("Security Test Stage") {
             steps {
-                sh "./mvnw snyk:monitor"
+                sh "npm audit"
             }
         }
         stage("Build") {
             steps {
-                sh "./mvnw install -Dsnyk.skip"
+                sh "npm build"
             }
         }
         stage("Build Docker Image") {

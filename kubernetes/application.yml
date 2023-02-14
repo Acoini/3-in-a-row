@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: triqui
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:Bicora/triqui-ui.git
+    targetRevision: HEAD
+    path: kubernetes/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
