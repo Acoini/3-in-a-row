@@ -1,4 +1,4 @@
-import { describe, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 // The two tests marked with concurrent will be run in parallel
 describe('suite', () => {
@@ -7,6 +7,7 @@ describe('suite', () => {
   });
   it.concurrent('concurrent test 1', async () => {
     /* ... */
+    expect(true).toBe(false);
   });
   it.concurrent('concurrent test 2', async () => {
     /* ... */
