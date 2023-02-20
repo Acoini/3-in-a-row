@@ -28,6 +28,9 @@ jobs:
       - name: Test implementation
         run: npm test
 
+      - name: Build
+        run: npm run build --if-present
+
       - name: Login to registry
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
@@ -35,5 +38,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build
-        run: npm run build --if-present
+      - name: Build and Push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tag: bicora/triqui-client:latest
