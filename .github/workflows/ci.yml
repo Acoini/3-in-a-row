@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: downcase REPO
+        run: |
+          echo "IMAGE_NAME=${github.repository,,}"
+
       - uses: actions/checkout@v3
 
       - name: Setup nodejs
