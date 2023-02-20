@@ -47,4 +47,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: $REGISTRY/$GH_REPOSITORY:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
