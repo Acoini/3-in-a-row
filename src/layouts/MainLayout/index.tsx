@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function MainLayout(): React.ReactElement {
-  return <div>Hello world</div>;
+  return <div>This is the MainLayout</div>;
 }
