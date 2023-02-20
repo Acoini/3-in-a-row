@@ -7,6 +7,12 @@ on:
   pull_request:
     branches:
       - main
+
+env:
+  GH_REPOSITORY: ${{ github.repository }}
+  GH_ACTOR: ${{ github.actor }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,11 +41,11 @@ jobs:
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: $GH_ACTOR
+          password: $GH_TOKEN
 
       - name: Build and Push
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ghcr.io/bicora/triqui-client:latest
+          tags: $GH_REPOSITORY:latest
