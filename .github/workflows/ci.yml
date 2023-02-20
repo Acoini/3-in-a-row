@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: downcase REPO
         run: |
-          echo ${IMAGE_NAME,,} >> ${IMAGE_NAME}
+          echo "IMAGE_NAME=${IMAGE_NAME,,}" >> $GITHUB_ENV
 
       - uses: actions/checkout@v3
 
