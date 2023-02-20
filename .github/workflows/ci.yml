@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: downcase REPO
         run: |
-          IMAGE_NAME=${IMAGE_NAME,,}
+          echo ${IMAGE_NAME,,} >> ${IMAGE_NAME}
 
       - uses: actions/checkout@v3
 
