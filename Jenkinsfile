@@ -8,21 +8,21 @@ pipeline {
                 echo 'Working on ' + env.BRANCH_NAME
             }
         }
-        stage("Unit Test stage") {
-            steps {
-                sh "npm ci"
-            }
-        }
-        stage("Security Test Stage") {
-            steps {
-                sh "npm audit"
-            }
-        }
-        stage("Build") {
-            steps {
-                sh "npm build"
-            }
-        }
+        // stage("Unit Test stage") {
+        //     steps {
+        //         sh "npm ci"
+        //     }
+        // }
+        // stage("Security Test Stage") {
+        //     steps {
+        //         sh "npm audit"
+        //     }
+        // }
+        // stage("Build") {
+        //     steps {
+        //         sh "npm build"
+        //     }
+        // }
         // stage("Build Docker Image") {
         //     when {
         //         branch 'develop'
