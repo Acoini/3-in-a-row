@@ -1,9 +1,12 @@
-name: Build client
+name: Integrate change
+run-name: 'Integrating change: ${{ github.event.head_commit.message}}'
 
 on:
   pull_request:
     branches:
       - main
+      - feat/**
+      - feature/**
     types:
       - opened
       - reopened
@@ -43,12 +46,3 @@ jobs:
 
       - name: Build
         run: npm run build --if-present
-
-      - name: Draft release
-        uses: release-drafter/release-drafter@v5
-        # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
-        # with:
-        #   config-name: my-config.yml
-        #   disable-autolabeler: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
