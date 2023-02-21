@@ -2,18 +2,15 @@ name: Integrate change
 run-name: 'Integrating change: ${{ github.event.head_commit.message}}'
 
 on:
+  push:
+    branches:
+      - feat/**
+      - feature/**
   pull_request:
     branches:
       - main
       - feat/**
       - feature/**
-    types:
-      - opened
-      - reopened
-      - synchronize
-
-permissions:
-  contents: read
 
 env:
   REGISTRY: ghcr.io
@@ -21,10 +18,6 @@ env:
 
 jobs:
   build:
-    permissions:
-      contents: write
-      pull-requests: write
-
     runs-on: ubuntu-latest
 
     steps:
