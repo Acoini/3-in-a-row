@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Dashboard = (): React.ReactElement => {
-  return <div> Welcome! </div>;
+  return <div> Triqui Bicora! </div>;
 };
 
 export default Dashboard;
