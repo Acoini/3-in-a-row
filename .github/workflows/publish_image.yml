@@ -1,4 +1,4 @@
-name: Build image
+name: Publish Image
 run-name: 'Building image for: ${{ github.event.head_commit.message }}'
 
 on:
@@ -16,23 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Setup nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: 19.x
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Lint code
-        run: npm run lint
-
-      - name: Test implementation
-        run: npm test
-
-      - name: Build
-        run: npm run build --if-present
 
       - name: Login to registry
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
