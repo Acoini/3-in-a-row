@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+.entername {
+    width: 150px;
+    height: 30px;
+    border-radius: 25px;
+    border-width: 1px;
+    background-color: white;
+    border-color: gray;
+    position: center;
+    outline: None;
+    font-family: 'Raleway', sans-serif;
+    text-indent: 25%;
+    animation-name: appearagain;
+    animation-duration: 3s;
+    animation-fill-mode:forwards;
+  }
+
+  .centered-div {
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    margin-top: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+  }
+
+::-webkit-input-placeholder {
+    color: black;
+    text-align: center;
+}
+
+.entername::placeholder {
+    text-indent: 25%;
+}
+
+.header {
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-fill-mode:forwards;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes appearagain {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+body {
+    overflow: hidden;
+}

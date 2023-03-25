@@ -3,18 +3,15 @@ import React from 'react'
 export default function NicknameInput() {
     // TODO: complete nickname input component logic and UI style
   return (
-        <>
-            <div>
-                <label>Your nickname is:</label>
-                <input 
-                    type='text'
-                    id='nickname-input'
-                    name='nickname'
-                    placeholder='type your nickname'
-                    aria-label='Nickname input'
-                />
-            </div>
-        </>
+   
+<>
+<div className="centered-div">
+    <div className="header">
+        <h3>Your nickname is</h3>
+    </div>
+    <input type="text" pattern="[A-Za-z]+" required maxLength={8} title="Only letters allowed" placeholder="Tickypick" className="entername"/>
+</div>
+</>
     )
 }
 
