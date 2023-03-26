@@ -16,7 +16,6 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <NicknameInput/>
-        <h1>asasasasasasasasas</h1>
       </main>
     </>
   )
