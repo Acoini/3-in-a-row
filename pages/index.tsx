@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import NicknameInput from '@/components/NicknameInput'
-import GameOptions from '@/components/GameOptions'
+import GameOptions from '@/components/GameOption'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,10 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='flex justify-center items-center h-screen'>
-        <div className='flex items-center gap-x-5'>
-          <NicknameInput/>
-          <GameOptions/>
-        </div>
+        <NicknameInput/>
       </main>
     </>
   )
