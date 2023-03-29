@@ -1,11 +1,10 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React, { createContext, useState } from 'react'
 import { io } from 'socket.io-client'
 
 
+export const GameContext = createContext<GameContext>({} as GameContext)
 
 const socket = io("http://localhost:5000")
-
-export const GameContext = createContext<object>({})
 
 
 function startNewGame(nickname: string) {
@@ -18,8 +17,8 @@ export default function GameProvider({ children }: any) {
         nickname: ""
     })
     
-    socket.on("game", () => {
-            
+    socket.on("game", (args) => {
+        console.log(args)
     })
 
     const contextValues = {
@@ -35,6 +34,10 @@ export default function GameProvider({ children }: any) {
     )
 }
 
+interface GameContext {
+    currentGame: Game
+    startNewGame: Function
+}
 
 interface Game {
     nickname: string
