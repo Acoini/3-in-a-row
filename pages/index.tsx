@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import Image from 'next/image';
 import Head from 'next/head'
+import Link from 'next/link';
 
 import { GameContext } from '@/contexts/GameContext';
 
@@ -33,7 +34,9 @@ export default function Home() {
             </div>
             <input onChange={handleOnChange} value={nickname} type="text" pattern="[A-Za-z]+" required maxLength={8} title="Only letters allowed" placeholder="Tickypick" className="entername" />
         </div>
-        <Image onClick={handleStartNewGame} src='play.svg' className='w-auto h-auto' priority alt='Play button' width="21" height="21" />
+        <Link href={'/playroom'}>
+          <Image onClick={handleStartNewGame} src='play.svg' className='w-auto h-auto' priority alt='Play button' width="21" height="21" />
+        </Link>
       </main>
     </>
   )
