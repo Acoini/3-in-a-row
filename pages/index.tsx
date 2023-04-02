@@ -1,11 +1,24 @@
+import { useState, useContext } from 'react';
+import Image from 'next/image';
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import NicknameInput from '@/components/NicknameInput'
+import Link from 'next/link';
 
-const inter = Inter({ subsets: ['latin'] })
+import { GameContext } from '@/contexts/GameContext';
 
 export default function Home() {
+  const [nickname, setNickname] = useState("");
+  const { startNewGame } = useContext(GameContext);
+
+  const handleOnChange = (event:any) => {
+      if (/^[a-zA-Z ]*$/.test(event.target.value)) {
+          setNickname(event.target.value)
+      }
+  }
+
+  const handleStartNewGame = () => {
+    startNewGame(nickname)
+  }
+
   return (
     <>
       <Head>
@@ -14,8 +27,16 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <NicknameInput/>
+      <main className='flex justify-center items-center h-screen'>
+        <div className="centered-div">
+            <div className="header">
+                <h3>Your nickname is</h3>
+            </div>
+            <input onChange={handleOnChange} value={nickname} type="text" pattern="[A-Za-z]+" required maxLength={8} title="Only letters allowed" placeholder="Tickypick" className="entername" />
+        </div>
+        <Link href={'/playroom'}>
+          <Image onClick={handleStartNewGame} src='play.svg' className='w-auto h-auto' priority alt='Play button' width="21" height="21" />
+        </Link>
       </main>
     </>
   )
