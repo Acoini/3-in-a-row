@@ -1,13 +1,21 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head'
 import Link from 'next/link';
 
 import { GameContext } from '@/contexts/GameContext';
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const [nickname, setNickname] = useState("");
-  const { startNewGame } = useContext(GameContext);
+  const {currentGame, startNewGame} = useContext(GameContext);
+  const router = useRouter()
+
+  useEffect( () => {
+    if(currentGame.nickname){
+      router.push('/playroom')
+    }
+  }, [currentGame])
 
   const handleOnChange = (event:any) => {
       if (/^[a-zA-Z ]*$/.test(event.target.value)) {
