@@ -7,11 +7,6 @@ export const GameContext = createContext<GameContext>({} as GameContext)
 const socket = io("http://localhost:5000")
 
 
-function startNewGame(nickname: string) {
-    socket.emit("queue", nickname)
-}
-
-
 export default function GameProvider({ children }: any) {
     const [currentGame, setCurrentGame] = useState<Game>({
         nickname: ""
@@ -20,6 +15,11 @@ export default function GameProvider({ children }: any) {
     socket.on("game", (args) => {
         console.log(args)
     })
+
+    function startNewGame(nickname: string) {
+        setCurrentGame({nickname})
+        socket.emit("queue", nickname)
+    }
 
     const contextValues = {
         currentGame,
