@@ -8,23 +8,12 @@ import { useRouter } from 'next/router';
 
 export default function Home() {
   const [nickname, setNickname] = useState("");
-  const {currentGame, start} = useContext(GameContext);
   const router = useRouter()
-
-  useEffect( () => {
-    if(currentGame.nickname){
-      router.push('/playroom')
-    }
-  }, [currentGame])
 
   const handleOnChange = (event:any) => {
       if (/^[a-zA-Z ]*$/.test(event.target.value)) {
           setNickname(event.target.value)
       }
-  }
-
-  const handleStartNewGame = () => {
-    start(nickname)
   }
 
   return (
@@ -53,7 +42,6 @@ export default function Home() {
         </div>
         <Link href={'/playroom'}>
           <Image 
-            onClick={handleStartNewGame} 
             src='play.svg' 
             className='w-auto h-auto' 
             priority 
