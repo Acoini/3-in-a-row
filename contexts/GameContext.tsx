@@ -8,23 +8,32 @@ const socket = io("http://localhost:5000")
 
 
 export default function GameProvider({ children }: any) {
-    const [currentGame, setCurrentGame] = useState<Game>({
-        nickname: ""
-    })
+    const [currentGame, setCurrentGame] = useState<Game>({} as Game)
     
     socket.on("game", (args) => {
         console.log(args)
     })
 
-    function startNewGame(nickname: string) {
-        setCurrentGame({nickname})
+    function start(nickname: string) {
+        console.log(currentGame)
+        setCurrentGame({} as Game)
         socket.emit("queue", nickname)
+    }
+
+    function move(position: number) {
+        let newGameState = currentGame.gameState 
+        newGameState[position] = currentGame.symbol
+        setCurrentGame({
+            ...currentGame,
+            gameState: newGameState 
+        })
     }
 
     const contextValues = {
         currentGame,
         setCurrentGame,
-        startNewGame
+        start,
+        move
     }
 
     return (
@@ -36,9 +45,12 @@ export default function GameProvider({ children }: any) {
 
 interface GameContext {
     currentGame: Game
-    startNewGame: Function
+    start: Function
 }
 
 interface Game {
-    nickname: string
+    nickname: string 
+    symbol: string
+    gameState: string[] 
+    winner: string | null
 }

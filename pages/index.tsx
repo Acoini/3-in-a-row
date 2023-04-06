@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 export default function Home() {
   const [nickname, setNickname] = useState("");
-  const {currentGame, startNewGame} = useContext(GameContext);
+  const {currentGame, start} = useContext(GameContext);
   const router = useRouter()
 
   useEffect( () => {
@@ -24,7 +24,7 @@ export default function Home() {
   }
 
   const handleStartNewGame = () => {
-    startNewGame(nickname)
+    start(nickname)
   }
 
   return (
