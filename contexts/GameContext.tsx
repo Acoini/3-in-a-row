@@ -1,44 +1,24 @@
 import React, { createContext, useState } from 'react'
+import { Game } from '@/@types/game'
 import { io } from 'socket.io-client'
 
 
-export const GameContext = createContext<GameContext>({} as GameContext)
+export const GameContext = createContext<any>({})
 
 const socket = io("http://localhost:5000")
 
 
-function startNewGame(nickname: string) {
-    socket.emit("queue", nickname)
-}
-
-
 export default function GameProvider({ children }: any) {
-    const [currentGame, setCurrentGame] = useState<Game>({
-        nickname: ""
-    })
+    const [currentGame, setCurrentGame] = useState<Game>()
     
     socket.on("game", (args) => {
         console.log(args)
     })
 
-    const contextValues = {
-        currentGame,
-        setCurrentGame,
-        startNewGame
-    }
-
     return (
-        <GameContext.Provider value={contextValues}>
+        <GameContext.Provider value={{}}>
             {children}
         </GameContext.Provider>
     )
 }
 
-interface GameContext {
-    currentGame: Game
-    startNewGame: Function
-}
-
-interface Game {
-    nickname: string
-}

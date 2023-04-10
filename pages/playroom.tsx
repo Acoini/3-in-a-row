@@ -1,8 +1,19 @@
 import GameBoard from '@/components/GameBoard'
+import { GameContext } from '@/contexts/GameContext'
 import Head from 'next/head'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useContext, useEffect } from 'react'
 
-export default function Playroom() {
+export default function Playroom() { 
+  const { currentGame } = useContext(GameContext)
+  const router = useRouter()
+
+  useEffect(() => {
+    if(!currentGame.nickname){
+      router.push("/")   
+    }
+  }, [router])
+
   return (
     <>
       <Head>
